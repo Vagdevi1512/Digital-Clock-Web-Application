@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<style>
+    body 
+    {
+        background-color: black;
+        background-image: url("https://wallpapers.com/images/featured/dark-forest-shsyax3tzax42p9o.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: 'Open Sans' ;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    button
+    {
+        font-size: 30px;
+        color: rgb(0, 0, 0);
+    }   
+    #clock 
+    {
+        font-size: 150px;
+        color: rgb(192, 125, 202);
+    }
+</style>
+
+<body>
+    <button onclick="TimeFormat()">Time Format</button>
+    <div id="clock"></div>
+    <script >
+        var is12HourFormat = true;
+        function CurrentTime() 
+        {
+            var clock = new Date();
+            var hours = clock.getHours();
+            var minutes = clock.getMinutes();
+            var seconds = clock.getSeconds();
+            if(hours<10) 
+            {
+                hours='0'+hours;
+            }
+            if(minutes<10) 
+            {
+                minutes='0'+minutes;
+            }
+            if(seconds<10) 
+            {
+                seconds='0'+seconds;
+            }
+            var Time;
+            Time = hours + ':' + minutes + ':' + seconds;
+            if (is12HourFormat) 
+            {
+                var day = 'PM';
+                if(hours>12)
+                {
+                    hours=hours-12;
+                }
+                else
+                {
+                    day='AM';
+                }
+                if(hours<10)
+                {
+                    hours='0'+hours;
+                }   
+                Time = hours + ':' + minutes + ':' + seconds + ' ' + day;
+            } 
+        document.getElementById('clock').textContent = Time;
+        }       
+        function TimeFormat() 
+        {
+            if(is12HourFormat==1)
+            {
+                is12HourFormat = 0;
+            }
+            else
+            {
+                is12HourFormat=1;
+            }
+            CurrentTime();
+        }
+        setInterval(CurrentTime, 1000);
+        CurrentTime();
+    </script>
+</body>
+</html>
